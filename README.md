@@ -31,48 +31,73 @@ REST API для управления каталогом компьютерной
 - Docker Desktop (для MongoDB)
 - Gradle (или использовать ./gradlew)
 
+---
+
 ### 1. Клонировать репозиторий
 ```bash
 git clone https://github.com/YOUR_USERNAME/computer-store.git
 cd computer-store
 ```
+
+---
+
 ### 2. Сборка проекта
 ```bash
 ./gradlew clean build
 ```
 
+---
+
 ### 3. Запустить через Docker Compose
 ```bash
 docker-compose up -d
 ```
+
+---
+
 ### 4. Проверить работу
 ```bash
 http://localhost:8080/actuator/health
 Ожидаемый ответ: {"status":"UP"}
 ```
 
+---
+
 ### 5. Swagger UI
 Открыть в браузере: http://localhost:8080/swagger-ui/index.html
 
+---
+
 ## Запуск локально (без Docker)
+
+---
+
 ###1. Запустить MongoDB
 ```bash
 docker run -d --name mongodb -p 27017:27017 mongo:7
 ```
+
+---
+
 ### 2. Запустить приложение
 ```bash
 ./gradlew bootRun
 Приложение будет доступно на порту 8085.
 ```
 
+---
+
 ### API Эндпоинты
-Method	URL	Description
 POST	/api/products	Создать товар
+---
 PUT	/api/products/{id}	Обновить товар
+---
 GET	/api/products/types/{type}	Получить по типу
+---
 GET	/api/products/{id}	Получить по ID
-##Пример: создать ноутбук
-bash
+---
+## Пример: создать ноутбук
+```bash
 curl -X POST http://localhost:8080/api/products \
   -H "Content-Type: application/json" \
   -d '{
@@ -83,7 +108,13 @@ curl -X POST http://localhost:8080/api/products \
     "stockQuantity": 10,
     "screenSize": 15
   }'
-##Пример ответа
+  ```
+
+---
+
+## Пример ответа
+
+```bash
 json
 {
   "id": "65f7a1b2c3d4e5f6g7h8i9j0",
@@ -96,9 +127,12 @@ json
   "createdAt": 1698768000000,
   "updatedAt": 1698768000000
 }
+ ```
 
 ### Валидация
 Все ограничения настраиваются через application.yml:
+
+---
 
 yaml
 app:
