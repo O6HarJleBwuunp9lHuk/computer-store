@@ -51,7 +51,7 @@ http://localhost:8080/actuator/health
 Ожидаемый ответ: {"status":"UP"}
 ```
 
-###5. Swagger UI
+### 5. Swagger UI
 Открыть в браузере: http://localhost:8080/swagger-ui/index.html
 
 ## Запуск локально (без Docker)
@@ -59,7 +59,7 @@ http://localhost:8080/actuator/health
 ```bash
 docker run -d --name mongodb -p 27017:27017 mongo:7
 ```
-###2. Запустить приложение
+### 2. Запустить приложение
 ```bash
 ./gradlew bootRun
 Приложение будет доступно на порту 8085.
@@ -135,7 +135,7 @@ docker-compose ps
 docker-compose down -v
 
 ### Структура проекта
-text
+
 computer-store/
 ├── src/
 │   ├── main/java/org/test/h2o/
