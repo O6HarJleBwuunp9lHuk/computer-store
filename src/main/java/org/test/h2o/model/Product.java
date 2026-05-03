@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.test.h2o.enam.ProductType;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -56,7 +57,7 @@ public class Product {
      * Служит дискриминатором для полиморфных запросов.
      */
     @Indexed
-    private String type;
+    private ProductType type;
 
     /**
      * Производитель товара (например, "Apple", "Dell", "Samsung").

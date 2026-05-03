@@ -1,22 +1,3 @@
-spring:
-  mongodb:
-    host: localhost
-    port: 27017
-    database: computerstore
-    username: admin
-    password: admin123
-    authentication-database: admin
-  data:
-    mongodb:
-      auto-index-creation: true
-
-server:
-  port: 8085
-
-logging:
-  level:
-    com.computerstore: DEBUG
-
 management:
   endpoints:
     web:
@@ -38,12 +19,12 @@ app:
         - DESKTOP
         - NETTOP
         - ALL_IN_ONE
-      laptop:
-        screen-sizes:
-          - 13
-          - 14
-          - 15
-          - 17
+    laptop:
+      screen-sizes:
+        - 13
+        - 14
+        - 15
+        - 17
     serial:
       min-length: 5
       max-length: 50
@@ -66,3 +47,19 @@ app:
     volume-gb:
       min: 120
       max: 20000
+
+spring:
+
+  mongodb:
+    host: localhost
+    port: 27017
+    database: computerstore
+    auto-index-creation: true
+
+server:
+  port: 8085
+
+logging:
+  level:
+    com.computerstore: DEBUG
+    liquibase: DEBUG

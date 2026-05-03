@@ -15,12 +15,6 @@ public class ValidationException extends BaseException {
     private final String fieldName;
     private final Object rejectedValue;
 
-    public ValidationException(String message, ErrorCode errorCode) {
-        super(message, errorCode);
-        this.fieldName = null;
-        this.rejectedValue = null;
-    }
-
     public ValidationException(String message, ErrorCode errorCode, String fieldName, Object rejectedValue) {
         super(message, errorCode);
         this.fieldName = fieldName;

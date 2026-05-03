@@ -2,7 +2,6 @@ package org.test.h2o.controller;
 
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.test.h2o.dto.ProductRequestDto;
 import org.test.h2o.dto.ProductResponseDto;
+import org.test.h2o.enam.ProductType;
 import org.test.h2o.service.ProductService;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public class ProductController {
     /**
      * Обновляет существующий продукт.
      *
-     * @param id идентификатор продукта
+     * @param id         идентификатор продукта
      * @param requestDto обновлённые данные
      * @return обновлённый продукт
      */
@@ -76,14 +76,11 @@ public class ProductController {
      */
     @GetMapping("/types/{type}")
     public ResponseEntity<List<ProductResponseDto>> getProductsByType(
-            @PathVariable
-            @Pattern(regexp = "DESKTOP|LAPTOP|MONITOR|HDD",
-                    message = "Type must be one of: DESKTOP, LAPTOP, MONITOR, HDD")
-            String type
+            @PathVariable ProductType type
     ) {
         log.info("GET /api/products/types/{} - Fetching products by type", type);
         List<ProductResponseDto> products = productService.getProductsByType(type);
-        return ResponseEntity.ok(products);
+        return ResponseEntity.ok(List.copyOf(products));
     }
 
     /**

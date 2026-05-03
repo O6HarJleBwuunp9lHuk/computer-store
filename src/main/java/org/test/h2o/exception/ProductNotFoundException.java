@@ -17,11 +17,4 @@ public class ProductNotFoundException extends BaseException {
                 PRODUCT_NOT_FOUND
         );
     }
-
-    public ProductNotFoundException(String id, String type) {
-        super(
-                String.format("Product with %s '%s' not found", type, id),
-                PRODUCT_NOT_FOUND
-        );
-    }
 }

@@ -16,31 +16,62 @@ import io.swagger.v3.oas.models.Operation;
 
 import java.util.List;
 
+/**
+ * Конфигурация OpenAPI (Swagger) для документирования REST API.
+ *
+ * @author Bredikhin Andrey
+ * @version 1.0
+ */
 @Configuration
 public class OpenApiConfig {
 
     public static final String BEARER_SCHEME = "Bearer";
 
+    /**
+     * Настраивает мета-информацию OpenAPI.
+     *
+     * @return кастомизированный OpenAPI объект
+     */
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
                         .title("Computer Store API")
                         .version("1.0")
-                        .description("REST API для управления каталогом компьютерной техники")
+                        .description("""
+                                REST API для управления каталогом компьютерной техники.
+                                
+                                ## Возможности
+                                - Добавление товаров
+                                - Редактирование товаров
+                                - Просмотр по типу
+                                - Просмотр по ID
+                                """)
                         .contact(new Contact()
-                                .name("Your Name")
-                                .email("your.email@example.com"))
+                                .name("Bredikhin Andrey")
+                                .email("anri23092003@gmail.com"))
                         .license(new License()
-                                .name("MIT")))
+                                .name("MIT")
+                                .url("https://opensource.org/licenses/MIT")))
                 .servers(List.of(
-                        new Server().url("http://localhost:8085").description("Local server")
+                        new Server()
+                                .url("http://localhost:8085")
+                                .description("Локальный сервер разработки"),
+                        new Server()
+                                .url("http://localhost:8080")
+                                .description("Docker контейнер")
                 ))
                 .components(new Components()
                         .addSecuritySchemes(BEARER_SCHEME, createBearerSecurityScheme())
                 );
     }
 
+    /**
+     * Кастомный OperationCustomizer для применения всех процессоров.
+     *
+     * @param operationHandler обработчик операций
+     * @return кастомизированный OperationCustomizer
+     */
     @Bean
     public OperationCustomizer customizeOperation(OperationHandler operationHandler) {
         return (Operation operation, HandlerMethod handlerMethod) -> {
@@ -49,11 +80,16 @@ public class OpenApiConfig {
         };
     }
 
+    /**
+     * Создаёт схему безопасности Bearer Token.
+     *
+     * @return SecurityScheme для JWT
+     */
     private SecurityScheme createBearerSecurityScheme() {
         return new SecurityScheme()
                 .type(SecurityScheme.Type.HTTP)
                 .scheme("bearer")
                 .bearerFormat("JWT")
-                .description("JWT токен для авторизации");
+                .description("JWT токен для авторизации. Формат: Bearer <token>");
     }
 }

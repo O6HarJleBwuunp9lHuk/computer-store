@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.test.h2o.dto.ProductRequestDto;
 import org.test.h2o.dto.ProductResponseDto;
+import org.test.h2o.enam.ProductType;
 import org.test.h2o.exception.DuplicateSerialException;
 import org.test.h2o.exception.ProductNotFoundException;
 import org.test.h2o.mapper.ProductMapper;
@@ -59,14 +60,15 @@ public class ProductService {
     }
 
     @Cacheable(value = "productsByType", key = "#type")
-    public List<ProductResponseDto> getProductsByType(String type) {
-        String normalizedType = validationService.validateAndNormalizeType(type);
-        log.debug("Fetching products by type: {}", normalizedType);
+    public List<ProductResponseDto> getProductsByType(ProductType type) {
+        log.debug("Fetching products by type: {}", type);
 
-        return productRepository.findByType(normalizedType)
+        List<ProductResponseDto> products = productRepository.findByType(type.name())
                 .stream()
                 .map(productMapper::toResponse)
                 .toList();
+
+        return List.copyOf(products);
     }
 
     @Cacheable(value = "products", key = "#id")

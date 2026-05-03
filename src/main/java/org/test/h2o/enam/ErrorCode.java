@@ -25,5 +25,4 @@ public enum ErrorCode {
     ErrorCode(HttpStatus httpStatus) {
         this.httpStatus = httpStatus;
     }
-
 }

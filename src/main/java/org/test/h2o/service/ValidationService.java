@@ -11,10 +11,9 @@ import org.test.h2o.exception.ValidationException;
 import org.test.h2o.service.validator.TypeSpecificValidator;
 
 import java.math.BigDecimal;
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
 /**
@@ -34,14 +33,12 @@ public class ValidationService {
     private final BigDecimal maxPrice;
     private final Pattern serialPattern;
 
-    private static final Set<String> VALID_TYPES = Set.of("DESKTOP", "LAPTOP", "MONITOR", "HDD");
-
     public ValidationService(
             ValidationProperties props,
             List<TypeSpecificValidator> validatorList
     ) {
         this.props = props;
-        this.validators = new EnumMap<>(ProductType.class);
+        this.validators = new ConcurrentHashMap<>();
 
         for (TypeSpecificValidator validator : validatorList) {
             validators.put(validator.getType(), validator);
@@ -76,7 +73,7 @@ public class ValidationService {
     /**
      * Проверяет, что тип продукта не меняется при обновлении.
      */
-    public void validateProductTypeUnchanged(String existingType, String newType) {
+    public void validateProductTypeUnchanged(ProductType existingType, ProductType newType) {
         if (!existingType.equals(newType)) {
             throw new ValidationException(
                     String.format("Cannot change product type from '%s' to '%s'", existingType, newType),
@@ -90,18 +87,6 @@ public class ValidationService {
     /**
      * Валидирует и нормализует тип продукта для поиска.
      */
-    public String validateAndNormalizeType(String type) {
-        String normalizedType = type.toUpperCase();
-        if (!VALID_TYPES.contains(normalizedType)) {
-            throw new ValidationException(
-                    String.format("Invalid product type: %s. Allowed values: %s", type, VALID_TYPES),
-                    ErrorCode.VALIDATION_INVALID_PRODUCT_TYPE,
-                    "type",
-                    type
-            );
-        }
-        return normalizedType;
-    }
 
     private void validateRequired(Object value, String fieldName, ErrorCode errorCode) {
         if (value == null) {

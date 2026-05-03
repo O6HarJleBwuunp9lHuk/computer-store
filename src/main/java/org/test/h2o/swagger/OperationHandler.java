@@ -26,7 +26,7 @@ public class OperationHandler {
     /**
      * Обрабатывает операцию всеми зарегистрированными процессорами.
      *
-     * @param operation операция Swagger
+     * @param operation     операция Swagger
      * @param handlerMethod метод контроллера
      */
     public void handle(Operation operation, HandlerMethod handlerMethod) {

@@ -15,7 +15,7 @@ public interface OperationProcessor {
     /**
      * Обрабатывает операцию Swagger.
      *
-     * @param operation операция для обработки
+     * @param operation     операция для обработки
      * @param handlerMethod метод контроллера
      */
     void process(Operation operation, HandlerMethod handlerMethod);

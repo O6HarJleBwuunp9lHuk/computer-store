@@ -3,7 +3,6 @@ package org.test.h2o.config;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;
 import java.util.Map;
@@ -19,7 +18,6 @@ import java.util.Map;
  */
 @Setter
 @Getter
-@ConfigurationProperties(prefix = "app.validation")
 public class ValidationProperties {
 
     private Desktop desktop;
