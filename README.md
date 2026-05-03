@@ -72,7 +72,7 @@ http://localhost:8080/actuator/health
 
 ---
 
-###1. Запустить MongoDB
+### 1. Запустить MongoDB
 ```bash
 docker run -d --name mongodb -p 27017:27017 mongo:7
 ```
@@ -134,6 +134,7 @@ json
 
 ---
 
+```bash
 yaml
 app:
   validation:
@@ -151,25 +152,12 @@ app:
     stock:
       min: 0
       max: 100000
-### Docker команды
+```
 
-# Запуск
-docker-compose up -d
-
-# Остановка
-docker-compose down
-
-# Просмотр логов
-docker-compose logs -f app
-
-# Статус контейнеров
-docker-compose ps
-
-# Полная очистка (удалить всё)
-docker-compose down -v
+---
 
 ### Структура проекта
-
+```bash
 computer-store/
 ├── src/
 │   ├── main/java/org/test/h2o/
@@ -192,6 +180,10 @@ computer-store/
 ├── Dockerfile
 ├── build.gradle
 └── README.md
+```
+
+---
+
 ### Контакты
 Автор: Bredikhin Andrey
 Email: anri23092003@gmail.com
