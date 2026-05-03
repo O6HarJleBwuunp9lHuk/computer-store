@@ -186,4 +186,5 @@ computer-store/
 
 ### Контакты
 Автор: Bredikhin Andrey
+---
 Email: anri23092003@gmail.com
