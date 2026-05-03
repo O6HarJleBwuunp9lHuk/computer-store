@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: Bredikhin Andrey
+      changes:
+        - createIndex:
+            collectionName: products
+            keys:
+              type: 1
+            options:
+              name: idx_type
+      rollback:
+        - dropIndex:
+            collectionName: products
+            indexName: idx_type

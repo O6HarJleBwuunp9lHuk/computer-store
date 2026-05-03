@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: Bredikhin Andrey
+      changes:
+        - createIndex:
+            collectionName: products
+            keys:
+              manufacturer: 1
+            options:
+              name: idx_manufacturer
+      rollback:
+        - dropIndex:
+            collectionName: products
+            indexName: idx_manufacturer

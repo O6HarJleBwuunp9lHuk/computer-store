@@ -1,0 +1,68 @@
+spring:
+  mongodb:
+    host: localhost
+    port: 27017
+    database: computerstore
+    username: admin
+    password: admin123
+    authentication-database: admin
+  data:
+    mongodb:
+      auto-index-creation: true
+
+server:
+  port: 8085
+
+logging:
+  level:
+    com.computerstore: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+
+app:
+  validation:
+    desktop:
+      form-factors:
+        - DESKTOP
+        - NETTOP
+        - ALL_IN_ONE
+      laptop:
+        screen-sizes:
+          - 13
+          - 14
+          - 15
+          - 17
+    serial:
+      min-length: 5
+      max-length: 50
+      pattern: "^[A-Z0-9-]+$"
+    manufacturer:
+      min-length: 2
+      max-length: 100
+    price:
+      min: "0.01"
+      max: "9999999.99"
+    stock:
+      min: 0
+      max: 100000
+    screen-size:
+      min: 13
+      max: 17
+    diagonal:
+      min: 10
+      max: 49
+    volume-gb:
+      min: 120
+      max: 20000
