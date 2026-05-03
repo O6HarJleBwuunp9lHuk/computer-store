@@ -16,7 +16,6 @@ REST API для управления каталогом компьютерной
 - Spring Boot 4.0.6
 - MongoDB
 - Docker / Docker Compose
-- Liquibase (миграции БД)
 - MapStruct (маппинг)
 - Caffeine (кэширование)
 - JUnit 5 + Testcontainers (тесты)
