@@ -1,0 +1,31 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: computer-store-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: computerstore
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - computer-store-network
+
+  app:
+    build: .
+    container_name: computer-store-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_MONGODB_HOST: computer-store-mongodb
+    depends_on:
+      - mongodb
+    networks:
+      - computer-store-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  computer-store-network:

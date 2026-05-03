@@ -1,0 +1,13 @@
+spring:
+  mongodb:
+    host: localhost
+    port: 27017
+    database: computerstore
+    auto-index-creation: true
+
+server:
+  port: 8085
+
+logging:
+  level:
+    com.computerstore: DEBUG

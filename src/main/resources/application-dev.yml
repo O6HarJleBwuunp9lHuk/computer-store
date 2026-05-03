@@ -1,0 +1,13 @@
+spring:
+  mongodb:
+    host: computer-store-mongodb
+    port: 27017
+    database: computerstore
+    auto-index-creation: true
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.computerstore: INFO

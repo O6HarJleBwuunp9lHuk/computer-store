@@ -1,0 +1,28 @@
+package org.test.h2o.enam;
+
+import lombok.Getter;
+import org.springframework.http.HttpStatus;
+
+@Getter
+public enum ErrorCode {
+
+    VALIDATION_REQUIRED_FIELD_MISSING(HttpStatus.BAD_REQUEST),
+    VALIDATION_SERIAL_INVALID_FORMAT(HttpStatus.BAD_REQUEST),
+    VALIDATION_SERIAL_LENGTH_INVALID(HttpStatus.BAD_REQUEST),
+    VALIDATION_MANUFACTURER_LENGTH_INVALID(HttpStatus.BAD_REQUEST),
+    VALIDATION_PRICE_OUT_OF_RANGE(HttpStatus.BAD_REQUEST),
+    VALIDATION_STOCK_OUT_OF_RANGE(HttpStatus.BAD_REQUEST),
+    VALIDATION_INVALID_PRODUCT_TYPE(HttpStatus.BAD_REQUEST),
+    VALIDATION_TYPE_SPECIFIC_FIELDS_INVALID(HttpStatus.BAD_REQUEST),
+    PRODUCT_NOT_FOUND(HttpStatus.NOT_FOUND),
+    DUPLICATE_SERIAL_NUMBER(HttpStatus.CONFLICT),
+    CANNOT_CHANGE_PRODUCT_TYPE(HttpStatus.CONFLICT),
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR),
+    DATABASE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR);
+
+    private final HttpStatus httpStatus;
+
+    ErrorCode(HttpStatus httpStatus) {
+        this.httpStatus = httpStatus;
+    }
+}
